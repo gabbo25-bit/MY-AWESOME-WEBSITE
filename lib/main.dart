@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// ignore: unused_import
+import 'package:url_launcher/url_launcher.dart';
 
 import 'firebase_options.dart';
+// ignore: unused_import
+import 'portfolio_screen.dart'; // Importa la nuova schermata del portfolio
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,14 +22,7 @@ void main() async {
     runApp(const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              'Errore di configurazione di Firebase. Controlla la console del browser per i dettagli.',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.red, fontSize: 16),
-            ),
-          ),
+          child: Text('Errore di configurazione di Firebase.'),
         ),
       ),
     ));
@@ -38,25 +35,28 @@ class PortfolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Portfolio',
+      title: 'Il Mio Portfolio',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark, // Usiamo un tema scuro per un look più "figo"
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: GoogleFonts.montserratTextTheme(),
+        textTheme: GoogleFonts.montserratTextTheme(
+          ThemeData.dark().textTheme,
+        ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+            .copyWith(secondary: Colors.cyanAccent),
       ),
-      // Qui usiamo StreamBuilder per ascoltare lo stato di login di Firebase
-      home: StreamBuilder(
+      home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // Mostra un indicatore di caricamento mentre Firebase verifica lo stato
-            return const Center(child: CircularProgressIndicator());
+            return const Scaffold(body: Center(child: CircularProgressIndicator()));
           }
           if (snapshot.hasData) {
-            // Se l'utente è loggato, mostra la schermata del portfolio
+            // L'utente è loggato, mostra il portfolio
             return const PortfolioScreen();
           }
-          // Se l'utente non è loggato, mostra la schermata di autenticazione
+          // L'utente non è loggato, mostra la schermata di autenticazione
           return const AuthScreen();
         },
       ),
@@ -64,37 +64,11 @@ class PortfolioApp extends StatelessWidget {
   }
 }
 
-// *** IMPORTANTE ***: Dovrai creare questo widget per il tuo portfolio.
-// Per ora, ti fornisco una versione semplice.
-class PortfolioScreen extends StatelessWidget {
-  const PortfolioScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Il mio Portfolio'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              // Quando l'utente clicca, lo disconnettiamo
-              FirebaseAuth.instance.signOut();
-            },
-          ),
-        ],
-      ),
-      body: const Center(
-        child: Text(
-          'Benvenuto nel tuo portfolio!',
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
+class PortfolioScreen {
+  const PortfolioScreen();
 }
 
-// Questo è il codice della schermata di login che avevamo già
+// Codice della schermata di login che avevamo già
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -146,6 +120,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_isLogin ? 'Accedi' : 'Registrati'),
+        centerTitle: true,
       ),
       body: Center(
         child: Padding(
