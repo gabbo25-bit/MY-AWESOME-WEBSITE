@@ -3,22 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// Questo file è generato automaticamente da `flutterfire configure`
 import 'firebase_options.dart';
 
 void main() async {
-  // Assicura che l'inizializzazione di Flutter sia completata
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
-    // Tenta di inizializzare Firebase
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    // Se l'inizializzazione ha successo, lancia l'app principale
     runApp(const PortfolioApp());
   } catch (e) {
-    // Se si verifica un errore, stampa l'eccezione e mostra una schermata di errore
     print('Errore durante l\'inizializzazione di Firebase: $e');
     runApp(const MaterialApp(
       home: Scaffold(
@@ -49,11 +44,57 @@ class PortfolioApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      home: const AuthScreen(),
+      // Qui usiamo StreamBuilder per ascoltare lo stato di login di Firebase
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Mostra un indicatore di caricamento mentre Firebase verifica lo stato
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasData) {
+            // Se l'utente è loggato, mostra la schermata del portfolio
+            return const PortfolioScreen();
+          }
+          // Se l'utente non è loggato, mostra la schermata di autenticazione
+          return const AuthScreen();
+        },
+      ),
     );
   }
 }
 
+// *** IMPORTANTE ***: Dovrai creare questo widget per il tuo portfolio.
+// Per ora, ti fornisco una versione semplice.
+class PortfolioScreen extends StatelessWidget {
+  const PortfolioScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Il mio Portfolio'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              // Quando l'utente clicca, lo disconnettiamo
+              FirebaseAuth.instance.signOut();
+            },
+          ),
+        ],
+      ),
+      body: const Center(
+        child: Text(
+          'Benvenuto nel tuo portfolio!',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+// Questo è il codice della schermata di login che avevamo già
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -138,9 +179,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {
-                    _handleAuth();
-                  },
+                  onPressed: _handleAuth,
                   child: Text(_isLogin ? 'Accedi' : 'Registrati'),
                 ),
                 TextButton(
