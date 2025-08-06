@@ -116,7 +116,7 @@ class PortfolioScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 50),
-        CircleAvatar(
+        const CircleAvatar(
           radius: 150,
           backgroundImage: AssetImage('assets/profile_pic.png'),
         ),
@@ -134,7 +134,7 @@ class PortfolioScreen extends StatelessWidget {
           Text('Chi sono', style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 20),
           const Text(
-            'Inserisci qui una breve descrizione su di te, le tue passioni, la tua esperienza e il tuo approccio al lavoro. Sii conciso e d\'impatto!',
+            'sono un ragazzo di 12 anni che gli piace programmare applicazioni e applicazioni web in flutter ',
             style: TextStyle(fontSize: 18, height: 1.5),
           ),
         ],
@@ -151,10 +151,10 @@ class PortfolioScreen extends StatelessWidget {
         children: [
           Text('Competenze', style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 20),
-          Wrap(
+          const Wrap(
             spacing: 20,
             runSpacing: 20,
-            children: const [
+            children: [
               _SkillChip(label: 'Flutter'),
               _SkillChip(label: 'Dart'),
               _SkillChip(label: 'Firebase'),
@@ -212,12 +212,12 @@ class PortfolioScreen extends StatelessWidget {
         children: [
           Text('Contatti', style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 20),
-          _ContactLink(
+          const _ContactLink(
             icon: Icons.email,
             label: 'la-tua-email@esempio.com',
             url: 'mailto:la-tua-email@esempio.com',
           ),
-          _ContactLink(
+          const _ContactLink(
             icon: Icons.link,
             label: 'github.com/tuo-username',
             url: 'https://github.com/tuo-username',
