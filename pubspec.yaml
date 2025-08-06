@@ -11,20 +11,18 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.3.0
-  firebase_core: ^2.24.2
-  firebase_auth: ^4.15.3
-  url_launcher: ^6.2.2 # Aggiungi questo per i link esterni
+  firebase_core: ^2.27.1  # Aggiornato a una versione più recente
+  firebase_auth: ^4.17.9  # Aggiornato a una versione più recente
+  url_launcher: ^6.2.2
   animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0 # Aggiornato a una versione più recente
 
 flutter:
   uses-material-design: true
-
-  # La sezione assets va qui, con la stessa indentazione di 'dependencies'
   assets:
     - assets/profile_pic.png
     - assets/project1.png
