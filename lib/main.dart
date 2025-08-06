@@ -38,7 +38,8 @@ class PortfolioApp extends StatelessWidget {
       title: 'Il Mio Portfolio',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        brightness: Brightness.dark, // Usiamo un tema scuro per un look più "figo"
+        brightness:
+            Brightness.dark, // Usiamo un tema scuro per un look più "figo"
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.montserratTextTheme(
           ThemeData.dark().textTheme,
@@ -50,7 +51,8 @@ class PortfolioApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Scaffold(body: Center(child: CircularProgressIndicator()));
+            return const Scaffold(
+                body: Center(child: CircularProgressIndicator()));
           }
           if (snapshot.hasData) {
             // L'utente è loggato, mostra il portfolio
@@ -62,10 +64,6 @@ class PortfolioApp extends StatelessWidget {
       ),
     );
   }
-}
-
-class PortfolioScreen {
-  const PortfolioScreen();
 }
 
 // Codice della schermata di login che avevamo già
