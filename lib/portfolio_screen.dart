@@ -67,7 +67,7 @@ class PortfolioScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   // Widget dell'AppBar
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
@@ -83,7 +83,7 @@ class PortfolioScreen extends StatelessWidget {
       ],
     );
   }
-  
+
   // Widget per la sezione di intestazione
   Widget _buildHeaderSection(BuildContext context) {
     return Row(
@@ -94,17 +94,17 @@ class PortfolioScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Ciao, sono [Il tuo nome]',
+                'Ciao, sono Gabriele Mosna',
                 style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
               ),
               const SizedBox(height: 10),
               AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    'Sono uno sviluppatore Flutter',
+                    'Sono uno sviluppatore principiante di applicazioni e siti in flutter',
                     textStyle: Theme.of(context).textTheme.headlineMedium,
                     speed: const Duration(milliseconds: 100),
                   ),
@@ -112,10 +112,6 @@ class PortfolioScreen extends StatelessWidget {
                 totalRepeatCount: 1,
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {}, // Funzione per scaricare il CV
-                child: const Text('Scarica il mio CV'),
-              ),
             ],
           ),
         ),
@@ -127,7 +123,7 @@ class PortfolioScreen extends StatelessWidget {
       ],
     );
   }
-  
+
   // Widget per la sezione "Chi sono"
   Widget _buildAboutSection(BuildContext context) {
     return Container(
@@ -145,7 +141,7 @@ class PortfolioScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   // Widget per la sezione "Competenze"
   Widget _buildSkillsSection(BuildContext context) {
     return Container(
@@ -170,7 +166,7 @@ class PortfolioScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   // Widget per la sezione "Progetti"
   Widget _buildProjectsSection(BuildContext context) {
     return Container(
@@ -178,7 +174,8 @@ class PortfolioScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('I Miei Progetti', style: Theme.of(context).textTheme.headlineLarge),
+          Text('I Miei Progetti',
+              style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 20),
           // Usiamo un GridView.builder per un layout responsive e dinamico
           GridView.builder(
@@ -196,7 +193,8 @@ class PortfolioScreen extends StatelessWidget {
                 title: 'Progetto ${index + 1}',
                 description: 'Breve descrizione del progetto.',
                 imagePath: 'assets/project${index + 1}.png',
-                link: 'https://github.com/tuo-username', // Sostituisci con i tuoi link
+                link:
+                    'https://github.com/tuo-username', // Sostituisci con i tuoi link
               );
             },
           ),
@@ -204,7 +202,7 @@ class PortfolioScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   // Widget per la sezione "Contatti"
   Widget _buildContactSection(BuildContext context) {
     return Container(
@@ -272,7 +270,8 @@ class _ProjectCard extends StatelessWidget {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(15)),
                 child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
             ),
@@ -283,7 +282,8 @@ class _ProjectCard extends StatelessWidget {
                 children: [
                   Text(title, style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 5),
-                  Text(description, style: Theme.of(context).textTheme.bodyMedium),
+                  Text(description,
+                      style: Theme.of(context).textTheme.bodyMedium),
                 ],
               ),
             ),
