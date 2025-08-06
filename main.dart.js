@@ -82023,7 +82023,7 @@ A.a08(new A.hM(r)).fG()},
 $S:0}
 A.a8o.prototype={
 $2(a,b){var s=""+(b+1)
-return new A.uK("Progetto "+s,"Breve descrizione del progetto.","assets/project"+s+".png","https://github.com/tuo-username",null)},
+return new A.uK("Progetto "+s,"Breve descrizione del progetto.","assets/project"+s+".png","https://github.com/gabbo25-bit",null)},
 $S:528}
 A.mW.prototype={
 O(a){var s=null
@@ -87928,7 +87928,7 @@ B.TT=new A.BT(2,"toggle")
 B.DW=new A.h7(57898,"MaterialIcons",!1)
 B.TU=new A.C1(B.DW,"la-tua-email@esempio.com","mailto:la-tua-email@esempio.com",null)
 B.DX=new A.h7(58240,"MaterialIcons",!1)
-B.TV=new A.C1(B.DX,"github.com/tuo-username","https://github.com/tuo-username",null)
+B.TV=new A.C1(B.DX,"github.com/gabbo25-bit","https://github.com/gabbo25-bit",null)
 B.VA=new A.agK(0,"plain")
 B.C1=new A.G(0.01568627450980392,0,0,0,B.h)
 B.EP=A.b(s([B.C1,B.x]),t.t_)
