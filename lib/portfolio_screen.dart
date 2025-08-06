@@ -194,7 +194,7 @@ class PortfolioScreen extends StatelessWidget {
                 description: 'Breve descrizione del progetto.',
                 imagePath: 'assets/project${index + 1}.png',
                 link:
-                    'https://github.com/tuo-username', // Sostituisci con i tuoi link
+                    'https://github.com/gabbo25-bit', // Sostituisci con i tuoi link
               );
             },
           ),
@@ -219,8 +219,8 @@ class PortfolioScreen extends StatelessWidget {
           ),
           const _ContactLink(
             icon: Icons.link,
-            label: 'github.com/tuo-username',
-            url: 'https://github.com/tuo-username',
+            label: 'github.com/gabbo25-bit',
+            url: 'https://github.com/gabbo25-bit',
           ),
         ],
       ),
